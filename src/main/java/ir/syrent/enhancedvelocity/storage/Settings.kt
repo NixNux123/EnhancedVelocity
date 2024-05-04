@@ -14,23 +14,23 @@ object Settings {
 
     val servers = mutableMapOf<String, ServerData>()
 
-    lateinit var defaultLanguage: String
+    private lateinit var defaultLanguage: String
     lateinit var globalListCommand: String
     lateinit var globalListAliases: List<String>
     var progressCount = 45
     lateinit var progressComplete: String
     lateinit var progressNotComplete: String
-    lateinit var playerVanishDecoration: String
+    private lateinit var playerVanishDecoration: String
     lateinit var serverVanishDecoration: String
 
-    lateinit var findCommand: String
-    lateinit var findAliases: List<String>
+    private lateinit var findCommand: String
+    private lateinit var findAliases: List<String>
 
     init {
         load()
     }
 
-    fun load() {
+    private fun load() {
         val settingsYaml = YamlConfig("settings")
         settingsYaml.create()
         settingsYaml.load()
@@ -113,14 +113,14 @@ object Settings {
         return formatMessage(getMessage(message), *replacements)
     }
 
-    fun formatMessage(messages: List<String>, vararg replacements: TextReplacement): List<String> {
-        val messageList = mutableListOf<String>()
-        for (message in messages) {
-            messageList.add(formatMessage(message, *replacements))
-        }
-
-        return messageList
-    }
+    //fun formatMessage(messages: List<String>, vararg replacements: TextReplacement): List<String> {
+    //    val messageList = mutableListOf<String>()
+    //    for (message in messages) {
+    //        messageList.add(formatMessage(message, *replacements))
+    //    }
+    //
+    //    return messageList
+    //}
 
     private fun getMessage(message: Message): String {
         return messages[message] ?: "Unknown message ($message)"
