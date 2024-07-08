@@ -80,6 +80,7 @@ class GListCommand : SimpleCommand {
                 TextReplacement("progress", progress),
                 TextReplacement("count", allServerPlayers.size.toString()),
                 TextReplacement("server", Settings.formatMessage(Settings.serverVanishDecoration.replace("\$server", serverName)))
+            )
         }
     }
 
