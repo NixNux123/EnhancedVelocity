@@ -22,7 +22,6 @@ class EnhancedVelocity @Inject constructor(
     @Subscribe
     fun onProxyInitialization(event: ProxyInitializeEvent) {
         instance = this
-
         enableMetrics()
         initializeInstances()
         registerCommands()
@@ -31,12 +30,11 @@ class EnhancedVelocity @Inject constructor(
     private fun initializeInstances() {
         Settings
     }
-
+    
     private fun enableMetrics() {
         val pluginID = 16753
         metricsFactory.make(this, pluginID)
     }
-
     private fun registerCommands() {
         GListCommand()
         SendCommand()

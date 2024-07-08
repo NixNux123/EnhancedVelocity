@@ -26,6 +26,3 @@ features:
       decoration:
         server: "<yellow>$server</yellow>"
         player: "<red>$player</red>"
-  find:
-    command: find
-    aliases: []
