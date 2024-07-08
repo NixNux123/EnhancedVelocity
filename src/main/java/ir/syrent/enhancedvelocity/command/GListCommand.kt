@@ -56,8 +56,8 @@ class GListCommand : SimpleCommand {
             orderedServers[server] = allPlayers
         }
 
-        for (orderedServer in orderedServers.toList().sortedBy { (_, value) -> value.size }.reversed().toMap()) {
-            if (counter == 9) {
+        for (orderedServer in orderedServers.toList().sortedBy { (key, value) -> if (key.serverInfo.name.lowercase().contains("amobig")) value.size + 1 else value.size }.reversed().toMap()) {
+            if (counter == Settings.globalListMaxServers) {
                 break
             }
             counter++
@@ -79,17 +79,11 @@ class GListCommand : SimpleCommand {
                 TextReplacement("players", playersContext),
                 TextReplacement("progress", progress),
                 TextReplacement("count", allServerPlayers.size.toString()),
-                TextReplacement("server", Settings.formatMessage(Settings.serverVanishDecoration.replace("\$server", serverName))
-                )
-            )
+                TextReplacement("server", Settings.formatMessage(Settings.serverVanishDecoration.replace("\$server", serverName)))
         }
     }
 
     private fun formatPlayerList(players: Collection<Player>): String {
-        return "\n" + players.distinctBy { player -> player.username }.joinToString(", ") {
-            player ->
-                player.username
-        }
+        return "\n" + players.distinctBy { player -> player.username }.joinToString(", ") { player -> player.username }
     }
-
 }

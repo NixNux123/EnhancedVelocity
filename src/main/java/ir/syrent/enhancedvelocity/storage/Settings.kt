@@ -17,6 +17,7 @@ object Settings {
     private lateinit var defaultLanguage: String
     lateinit var globalListCommand: String
     lateinit var globalListAliases: List<String>
+    var globalListMaxServers: Int = 9
     var progressCount = 45
     lateinit var progressComplete: String
     lateinit var progressNotComplete: String
@@ -42,6 +43,7 @@ object Settings {
         val globalList = features.node("global_list")
         globalListCommand = globalList.node("command").string ?: "glist"
         globalListAliases = globalList.node("aliases").getList(String::class.java) ?: emptyList()
+        globalListMaxServers = globalList.node("max-servers").getInt(9)
 
         val progress = globalList.node("progress")
         progressCount = progress.node("count").int
@@ -77,7 +79,7 @@ object Settings {
 
         messages.apply {
             this.clear()
-            for (message in Message.values()) {
+            for (message in Message.entries) {
                 if (message == Message.EMPTY) {
                     this[message] = ""
                     continue
