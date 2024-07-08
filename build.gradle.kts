@@ -6,7 +6,7 @@ plugins {
 }
 
 group = "ir.syrent"
-version = findProperty("version")
+version = "1.3.4"
 val slug = "enhancedvelocity"
 description = "Customize your Velocity network experience"
 
@@ -141,13 +141,8 @@ publishing {
 
     repositories {
         maven {
-            name = "sayandevelopment-repo"
-            url = uri("https://repo.sayandev.org/snapshots/")
-
-            credentials {
-                username = System.getenv("REPO_SAYAN_USER") ?: project.findProperty("repo.sayan.user") as String
-                password = System.getenv("REPO_SAYAN_TOKEN") ?: project.findProperty("repo.sayan.token") as String
-            }
+            name = "repoSayandevelopment"
+            url = uri("https://repo.sayandev.org/releases")
         }
     }
 }

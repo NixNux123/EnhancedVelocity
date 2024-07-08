@@ -79,7 +79,7 @@ object Settings {
 
         messages.apply {
             this.clear()
-            for (message in Message.values()) {
+            for (message in Message.entries) {
                 if (message == Message.EMPTY) {
                     this[message] = ""
                     continue

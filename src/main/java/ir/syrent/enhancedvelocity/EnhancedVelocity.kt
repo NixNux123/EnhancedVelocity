@@ -15,15 +15,9 @@ import java.nio.file.Path
 class EnhancedVelocity @Inject constructor(
     server: ProxyServer,
     logger: Logger,
-    metricsFactory: Metrics.Factory,
+    private val metricsFactory: Metrics.Factory,
     @DataDirectory dataDirectory: Path
 ) : VRUoMPlugin(server, logger, dataDirectory) {
-
-    private val metricsFactory: Metrics.Factory
-
-    init {
-        this.metricsFactory = metricsFactory
-    }
 
     @Subscribe
     fun onProxyInitialization(event: ProxyInitializeEvent) {
@@ -45,10 +39,8 @@ class EnhancedVelocity @Inject constructor(
 
     private fun registerCommands() {
         GListCommand()
-        FindCommand()
         SendCommand()
         AlertCommand()
-        PingCommand()
         KickAllCommand()
     }
 
