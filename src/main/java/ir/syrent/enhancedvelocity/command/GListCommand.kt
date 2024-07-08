@@ -85,10 +85,6 @@ class GListCommand : SimpleCommand {
     }
 
     private fun formatPlayerList(players: Collection<Player>): String {
-        return "\n" + players.distinctBy { player -> player.username }.joinToString(", ") {
-                player ->
-            player.username
-        }
+        return "\n" + players.distinctBy { player -> player.username }.joinToString(", ") { player -> player.username }
     }
-
 }
